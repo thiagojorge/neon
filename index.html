@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neon IPTV - Player de listas legais</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="branding">
+        <div class="logo">Neon IPTV</div>
+        <span class="tagline">Player completo para listas gratuitas e legais</span>
+      </div>
+      <div class="controls">
+        <button id="open-help" class="ghost">Guia rápido</button>
+        <button id="open-settings" class="ghost">Configurações</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <h2>Playlists</h2>
+          <div class="field">
+            <label for="playlist-url">URL da playlist</label>
+            <input id="playlist-url" type="url" placeholder="https://exemplo.com/lista.m3u" />
+          </div>
+          <div class="field">
+            <label for="playlist-name">Nome da playlist</label>
+            <input id="playlist-name" type="text" placeholder="Minha lista legal" />
+          </div>
+          <div class="actions">
+            <button id="add-playlist">Adicionar</button>
+            <label class="file-button">
+              Importar arquivo
+              <input id="playlist-file" type="file" accept=".m3u,.m3u8" />
+            </label>
+          </div>
+          <div id="playlist-list" class="playlist-list"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Filtros</h2>
+          <div class="field">
+            <label for="search">Buscar canais</label>
+            <input id="search" type="search" placeholder="Nome do canal" />
+          </div>
+          <div class="chips" id="category-chips"></div>
+          <div class="toggles">
+            <label><input id="toggle-favorites" type="checkbox" /> Mostrar apenas favoritos</label>
+            <label><input id="toggle-live" type="checkbox" /> Priorizar ao vivo</label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Favoritos</h2>
+          <div id="favorites-list" class="mini-list"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Assistidos recentemente</h2>
+          <div id="recent-list" class="mini-list"></div>
+        </section>
+      </aside>
+
+      <section class="content">
+        <div class="player-card">
+          <div class="player-header">
+            <div>
+              <h1 id="now-playing">Selecione um canal</h1>
+              <p id="now-meta">Carregue uma playlist para começar.</p>
+            </div>
+            <div class="player-actions">
+              <button id="toggle-favorite" class="ghost">☆ Favoritar</button>
+              <button id="copy-link" class="ghost">Copiar link</button>
+            </div>
+          </div>
+          <video id="player" controls poster="" playsinline></video>
+          <div class="player-footer">
+            <div class="quality">
+              <span>Qualidade</span>
+              <select id="quality-select"></select>
+            </div>
+            <div class="status" id="player-status">Aguardando seleção.</div>
+          </div>
+        </div>
+
+        <section class="panel channels">
+          <div class="panel-header">
+            <h2>Canais</h2>
+            <span id="channel-count">0 canais</span>
+          </div>
+          <div id="channel-grid" class="channel-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <button id="close-modal" class="ghost">Fechar</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
